@@ -54,7 +54,7 @@ prezto  dir_colors  install.sh  zpreztorc  zshrc
 
 ![vim](images/vim.jpeg)
 
-该脚本用于初始化 vim 配置, 包括自动安装 [vim-plug](https://github.com/junegunn/vim-plug) 插件管理器以及自动安装一些差价等; 该脚本会自动配置 `~/.vimrc` 文件, 目前 `~/.vimrc` 文件基本配置逻辑如下:
+该脚本用于初始化 vim 配置, 包括自动安装 [vim-plug](https://github.com/junegunn/vim-plug) 插件管理器以及自动安装一些插件等; 该脚本会自动配置 `~/.vimrc` 文件, 目前 `~/.vimrc` 文件基本配置逻辑如下:
 
 - 加载 `~/.vimrc_plug` 内的常用插件
 - 调整一些基础配置, 包括不限于 语法高亮、缩进大小、行号显示、编码等
