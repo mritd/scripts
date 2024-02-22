@@ -72,3 +72,50 @@ prezto  dir_colors  install.sh  zpreztorc  zshrc
 - 安装常用插件, 将暂停插件快捷键更换为 `F12`(一般用于多 tmux 嵌套)
 - 默认创建三个 session `🍁 local`、`🌋 test`、`🌀 prod`
 
+### 4.4、docker.sh
+
+该脚本用于自动安装 docker 以及 docker 插件(composes、buildx 等), 同时该脚本将会自动配置 `/etc/docker/daemon.json` 文件, 目前针对 docker daemon 的配置逻辑如下:
+
+- 默认开启 init 支持, 防止容器产生僵尸进程
+- 切换 docker 存储目录为 `/data/docker`, 此后所有 docker 数据将会存放于此
+- 限制容器日志文件大小, 单个容器最多 5 个日志文件, 单个日志文件最大 10m, 防止容器 stdout 过量输出导致占满磁盘空间
+- 开启 `live-restore` 防止 docker daemon 意外重启导致容器重启
+- `Debian`、`Redhat` 系列系统默认 CGroups Driver 切换为 `systemd`, `Alpine` 系统保持默认 `cgroupfs v2`
+
+该脚本安装完成后默认会 Pin 住 docker 相关软件包, 防止自动升级导致容器重启或出现不可逆故障.
+
+### 4.5、sshd.sh
+
+> **⚠️⚠️⚠️ 注意: 该脚本会将本人的 ssh key 写入 `/root/.ssh/authorized_keys`!!! 执行脚本初始化后请删除, 否则我可以无需密码登陆你的服务器!!!** 该操作主要是为了方便我自己进行服务器初始化时进行的, 这里特此说明.
+
+该脚本会自动初始化 ssh 相关配置, 主要操作如下:
+
+- **开启 `root` 用户的密码登陆**
+- 允许载入 `ENABLE_VIM_CONFIG` 环境变量, 主要用于控制 vim 配置是否生效
+- 将主机的 key 切换为 `ed25519` 格式
+- 重新生成主机 ssh key, 一般用于解决虚拟机复制后多主机 ssh key 相同问题
+
+### 4.6、alpine.sh
+
+>  **⚠️⚠️⚠️ 注意:该脚本内包含 `sshd.sh`, 初始化完成后记得删除本人的 ssh key.**
+
+该脚本用户 `Alpine` 系统初始化, 主要操作如下:
+
+- 自动配置 apk、时区、udev、ntp
+- 安装常用软件包, 例如 `coreutils`、`bash`、`zsh`、`open-vm-tools` 等
+- 安装 `osc52` 脚本, 该脚本用于远程复制大文本, 例如 `cat xxxx.conf | osc52`(具体请搜索 osc52 相关资料)
+- 自动配置 `sshd`、`prezto`、`vim`、`tmux`
+
+### 4.7、ubuntu.sh
+
+>  **⚠️⚠️⚠️ 注意:该脚本内包含 `sshd.sh`, 初始化完成后记得删除本人的 ssh key.**
+
+该脚本与 `alpine.sh` 类似, 主要用于初始化 `Ubuntu` 系统, 主要操作如下:
+
+- 自动配置 locale 相关设置
+- 调整 `needrestart` 配置, 保证在更新时自动处理无需人为干预
+- 安装常用软件包, 例如 `git`、`vim`、`htop`、`ipvsadm` 等
+- 关闭 `apt-daily.timer`、`apt-daily-upgrade.timer` 连个定时任务, 防止后台自动升级软件包导致不可控的故障
+- 关闭 `multipathd.service`, 因为大多数环境用不到
+- 安装 `osc52` 脚本, 该脚本用于远程复制大文本, 例如 `cat xxxx.conf | osc52`(具体请搜索 osc52 相关资料)
+- 自动配置 `sshd`、`prezto`、`vim`、`tmux`
