@@ -36,6 +36,8 @@ prezto  dir_colors  install.sh  zpreztorc  zshrc
 
 ### 4.1、prezto.sh
 
+![prezto](images/prezto.jpeg)
+
 该脚本用于初始化 zsh 配置框架 `prezto`, `prezto` 是一个类似 `ohmyzsh` 的 zsh 配置框架, 但比 `ohmyzsh` 速度更快更轻量; **该脚本运行后会安装 `prezto` 并配置 `~/.zshrc`, `~/.zshrc` 目前基本配置逻辑如下:**
 
 - 同时兼容 `macOS` 和 `Linux` 系统
@@ -50,8 +52,23 @@ prezto  dir_colors  install.sh  zpreztorc  zshrc
 
 ### 4.2、vim.sh
 
+![vim](images/vim.jpeg)
+
 该脚本用于初始化 vim 配置, 包括自动安装 [vim-plug](https://github.com/junegunn/vim-plug) 插件管理器以及自动安装一些差价等; 该脚本会自动配置 `~/.vimrc` 文件, 目前 `~/.vimrc` 文件基本配置逻辑如下:
 
 - 加载 `~/.vimrc_plug` 内的常用插件
 - 调整一些基础配置, 包括不限于 语法高亮、缩进大小、行号显示、编码等
 - 添加自定义命令 `W` 以解决 **编辑特殊文件前忘记使用 `sudo` 而不得不退出然后重新编辑再保存问题**
+
+### 4.3、tmux.sh
+
+![tmux](images/tmux.jpeg)
+
+该脚本用于初始化 tmux 配置, 主要包括自动安装 [tpm](https://github.com/tmux-plugins/tpm) 插件管理器以及自动安装一些 tmux 插件; 该脚本会自动配置 `~/.tmux.conf` 文件, 目前 `~/.tmux.conf` 文件基本配置逻辑如下:
+
+- **默认前缀按键更换为 `Ctrl+s`**
+- 开启 `OSC 52` 支持
+- 调整窗口样式, 包括不限于自动标题、左右状态栏显示等
+- 安装常用插件, 将暂停插件快捷键更换为 `F12`(一般用于多 tmux 嵌套)
+- 默认创建三个 session `🍁 local`、`🌋 test`、`🌀 prod`
+
