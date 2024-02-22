@@ -115,7 +115,7 @@ prezto  dir_colors  install.sh  zpreztorc  zshrc
 - 自动配置 locale 相关设置
 - 调整 `needrestart` 配置, 保证在更新时自动处理无需人为干预
 - 安装常用软件包, 例如 `git`、`vim`、`htop`、`ipvsadm` 等
-- 关闭 `apt-daily.timer`、`apt-daily-upgrade.timer` 连个定时任务, 防止后台自动升级软件包导致不可控的故障
+- 关闭 `apt-daily.timer`、`apt-daily-upgrade.timer` 定时任务, 防止后台自动升级软件包导致不可控的故障
 - 关闭 `multipathd.service`, 因为大多数环境用不到
 - 安装 `osc52` 脚本, 该脚本用于远程复制大文本, 例如 `cat xxxx.conf | osc52`(具体请搜索 osc52 相关资料)
 - 自动配置 `sshd`、`prezto`、`vim`、`tmux`
